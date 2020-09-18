@@ -14,20 +14,20 @@ public class Node implements Comparable{
         this.pairList = linkedList;
     }
 
-    int addPairToPairList(Pair pair) {
+    boolean addPairToPairList(Pair pair) {
         if (pairList.getSize() == 0) {
             pairList.put(pair);
-            return 1;
+            return true;
         }
         for (int i = 0; i < pairList.getSize(); i++) {
             Pair temp = (Pair) pairList.get(i);
             if (pair.getKey().equals(temp.getKey())){
                 temp.fillPair(pair.getKey(), pair.getValue());
-                return 0;
+                return false;
             }
         }
         pairList.put(pair);
-        return 1;
+        return true;
     }
 
     MyLinkedList getPairList() {

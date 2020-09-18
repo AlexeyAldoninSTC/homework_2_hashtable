@@ -19,6 +19,17 @@ public class MyHashTableTest {
         myHashTable.put(10, 5);
         int actualSize3 = myHashTable.getSize();
         assertEquals(2, actualSize3);
+        myHashTable = new MyHashTable();
+        for (int i = 0; i < 100; i++) {
+            myHashTable.put(i, i * 10);
+        }
+        assertEquals(100, myHashTable.getSize());
+        assertEquals(10, myHashTable.getValue(1));
+        for (int i = 0; i < 10000; i++) {
+            myHashTable.put(i, i * 10);
+        }
+        assertEquals(10000, myHashTable.getSize());
+        assertEquals(10, myHashTable.getValue(1));
     }
 
     @Test
@@ -32,8 +43,11 @@ public class MyHashTableTest {
 
     @Test
     public void remove() {
-        myHashTable.put(1, 1);
+        myHashTable.put(1, 10);
+        assertEquals(1, myHashTable.getSize());
+        assertEquals(10, myHashTable.getValue(1));
         assertFalse(myHashTable.remove(0));
+        assertEquals(1, myHashTable.getSize());
         assertTrue(myHashTable.remove(1));
         assertEquals(0, myHashTable.getSize());
     }
